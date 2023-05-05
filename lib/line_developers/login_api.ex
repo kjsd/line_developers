@@ -1,6 +1,8 @@
 defmodule LINEDevelopers.LoginAPI do
   @behaviour LINEDevelopers.LoginAPISpec
 
+  alias LineDevelopers.HTTPRequest
+
   @impl LINEDevelopers.LoginAPISpec
   def verify_access_token!(access_token) when is_binary(access_token) do
     query = %{access_token: access_token}
@@ -8,7 +10,7 @@ defmodule LINEDevelopers.LoginAPI do
 
     "https://api.line.me/oauth2/v2.1/verify"
     |> Kernel.<>("?" <> query)
-    |> Helpers.HTTPRequest.get!()
+    |> HTTPRequest.get!()
     |> parse_response()
   end
 
@@ -20,7 +22,7 @@ defmodule LINEDevelopers.LoginAPI do
     body = {:form, [id_token: id_token, client_id: client_id]}
 
     "https://api.line.me/oauth2/v2.1/verify"
-    |> Helpers.HTTPRequest.post!(body, header)
+    |> HTTPRequest.post!(body, header)
     |> parse_response()
   end
 
@@ -29,7 +31,7 @@ defmodule LINEDevelopers.LoginAPI do
     header = ["Authorization": "Bearer #{access_token}"]
 
     "https://api.line.me/v2/profile"
-    |> Helpers.HTTPRequest.get!(header)
+    |> HTTPRequest.get!(header)
     |> parse_response()
   end
 

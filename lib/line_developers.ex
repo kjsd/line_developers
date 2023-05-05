@@ -1,11 +1,13 @@
-defmodule LineDevelopers do
+defmodule LINEDevelopers do
+  alias LineDevelopers.HTTPRequest
+  
   def messaging_api(), do: Application.get_env(:line_developers, :messaging_api)
   def login_api(), do: Application.get_env(:line_developers, :login_api)
 
   def upload_richmenu_image!(url, access_token, richmenu_id) do
     file = "/tmp/" <> UUID.uuid4()
 
-    http_stream!(url)
+    HTTPRequest.get_stream!(url)
     |> Stream.into(File.stream!(file))
     |> Stream.run()
 

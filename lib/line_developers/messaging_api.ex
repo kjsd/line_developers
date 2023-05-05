@@ -1,6 +1,8 @@
 defmodule LINEDevelopers.MessagingAPI do
   @behaviour LINEDevelopers.MessagingAPISpec
 
+  alias LineDevelopers.HTTPRequest
+
   @impl LINEDevelopers.MessagingAPISpec
   def reply!(access_token, reply_token, [m|_] = messages)
   when is_binary(access_token) and is_binary(reply_token) and is_map(m) do
@@ -10,7 +12,7 @@ defmodule LINEDevelopers.MessagingAPI do
     |> Jason.encode!()
 
     "https://api.line.me/v2/bot/message/reply"
-    |> Helpers.HTTPRequest.post!(body, header)
+    |> HTTPRequest.post!(body, header)
     |> parse_response()
   end
 
@@ -25,7 +27,7 @@ defmodule LINEDevelopers.MessagingAPI do
     |> Jason.encode!()
 
     "https://api.line.me/v2/bot/message/push"
-    |> Helpers.HTTPRequest.post!(body, header)
+    |> HTTPRequest.post!(body, header)
     |> parse_response()
   end
 
@@ -40,7 +42,7 @@ defmodule LINEDevelopers.MessagingAPI do
     |> Jason.encode!()
 
     "https://api.line.me/v2/bot/message/multicast"
-    |> Helpers.HTTPRequest.post!(body, header)
+    |> HTTPRequest.post!(body, header)
     |> parse_response()
   end
 
@@ -55,7 +57,7 @@ defmodule LINEDevelopers.MessagingAPI do
     |> Jason.encode!()
 
     "https://api.line.me/v2/bot/message/broadcast"
-    |> Helpers.HTTPRequest.post!(body, header)
+    |> HTTPRequest.post!(body, header)
     |> parse_response()
   end
 
@@ -76,7 +78,7 @@ defmodule LINEDevelopers.MessagingAPI do
     |> Jason.encode!()
 
     "https://api.line.me/v2/bot/message/narrowcast"
-    |> Helpers.HTTPRequest.post!(body, header)
+    |> HTTPRequest.post!(body, header)
     |> parse_response()
   end
 
@@ -86,7 +88,7 @@ defmodule LINEDevelopers.MessagingAPI do
     header = ["Authorization": "Bearer #{access_token}"]
 
     "https://api.line.me/v2/bot/message/progress/narrowcast?requestId=#{request_id}"
-    |> Helpers.HTTPRequest.get!(header)
+    |> HTTPRequest.get!(header)
     |> parse_response()
   end
 
@@ -96,7 +98,7 @@ defmodule LINEDevelopers.MessagingAPI do
     header = ["Authorization": "Bearer #{access_token}"]
 
     "https://api.line.me/v2/bot/audienceGroup/#{audience_id}"
-    |> Helpers.HTTPRequest.get!(header)
+    |> HTTPRequest.get!(header)
     |> parse_response()
   end
 
@@ -112,7 +114,7 @@ defmodule LINEDevelopers.MessagingAPI do
     |> Jason.encode!()
 
     "https://api.line.me/v2/bot/audienceGroup/upload"
-    |> Helpers.HTTPRequest.post!(body, header)
+    |> HTTPRequest.post!(body, header)
     |> parse_response()
   end
 
@@ -129,7 +131,7 @@ defmodule LINEDevelopers.MessagingAPI do
     |> Jason.encode!()
 
     "https://api.line.me/v2/bot/audienceGroup/upload"
-    |> Helpers.HTTPRequest.put!(body, header)
+    |> HTTPRequest.put!(body, header)
     |> parse_response()
   end
 
@@ -139,7 +141,7 @@ defmodule LINEDevelopers.MessagingAPI do
     header = ["Authorization": "Bearer #{access_token}"]
 
     "https://api.line.me/v2/bot/audienceGroup/#{audience_id}"
-    |> Helpers.HTTPRequest.delete!(header)
+    |> HTTPRequest.delete!(header)
     |> parse_response()
   end
 
@@ -152,7 +154,7 @@ defmodule LINEDevelopers.MessagingAPI do
     |> Jason.encode!()
 
     "https://api.line.me/v2/bot/richmenu"
-    |> Helpers.HTTPRequest.post!(body, header)
+    |> HTTPRequest.post!(body, header)
     |> parse_response()
   end
 
@@ -162,7 +164,7 @@ defmodule LINEDevelopers.MessagingAPI do
     header = ["Authorization": "Bearer #{access_token}"]
 
     "https://api.line.me/v2/bot/richmenu/#{richmenu_id}"
-    |> Helpers.HTTPRequest.delete!(header)
+    |> HTTPRequest.delete!(header)
     |> parse_response()
   end
 
@@ -173,7 +175,7 @@ defmodule LINEDevelopers.MessagingAPI do
               "Content-Type": "image/png"]
 
     "https://api-data.line.me/v2/bot/richmenu/#{richmenu_id}/content"
-    |> Helpers.HTTPRequest.post!({:file, file}, header)
+    |> HTTPRequest.post!({:file, file}, header)
     |> parse_response()
   end
 
@@ -183,7 +185,7 @@ defmodule LINEDevelopers.MessagingAPI do
     header = ["Authorization": "Bearer #{access_token}"]
 
     "https://api.line.me/v2/bot/user/all/richmenu/#{richmenu_id}"
-    |> Helpers.HTTPRequest.post!("", header)
+    |> HTTPRequest.post!("", header)
     |> parse_response()
   end
 
@@ -196,7 +198,7 @@ defmodule LINEDevelopers.MessagingAPI do
     |> Jason.encode!()
 
     "https://api.line.me/v2/bot/richmenu/bulk/link"
-    |> Helpers.HTTPRequest.post!(body, header)
+    |> HTTPRequest.post!(body, header)
     |> parse_response()
   end
 
@@ -209,7 +211,7 @@ defmodule LINEDevelopers.MessagingAPI do
     |> Jason.encode!()
 
     "https://api.line.me/v2/bot/richmenu/bulk/unlink"
-    |> Helpers.HTTPRequest.post!(body, header)
+    |> HTTPRequest.post!(body, header)
     |> parse_response()
   end
 
@@ -223,7 +225,7 @@ defmodule LINEDevelopers.MessagingAPI do
     |> Jason.encode!()
 
     "https://api.line.me/v2/bot/richmenu/alias"
-    |> Helpers.HTTPRequest.post!(body, header)
+    |> HTTPRequest.post!(body, header)
     |> parse_response()
   end
 
@@ -233,7 +235,7 @@ defmodule LINEDevelopers.MessagingAPI do
     header = ["Authorization": "Bearer #{access_token}"]
 
     "https://api.line.me/v2/bot/richmenu/alias/#{alias_id}"
-    |> Helpers.HTTPRequest.delete!(header)
+    |> HTTPRequest.delete!(header)
     |> parse_response()
   end
 
@@ -243,7 +245,7 @@ defmodule LINEDevelopers.MessagingAPI do
     header = ["Authorization": "Bearer #{access_token}"]
 
     "https://api.line.me/v2/bot/richmenu/#{richmenu_id}"
-    |> Helpers.HTTPRequest.get!(header)
+    |> HTTPRequest.get!(header)
     |> parse_response()
   end
 
@@ -253,7 +255,7 @@ defmodule LINEDevelopers.MessagingAPI do
     header = ["Authorization": "Bearer #{access_token}"]
 
     "https://api.line.me/v2/bot/profile/#{user_id}"
-    |> Helpers.HTTPRequest.get!(header)
+    |> HTTPRequest.get!(header)
     |> parse_response()
   end
 
