@@ -16,6 +16,25 @@ def deps do
 end
 ```
 
+## Configure
+
+Set key `:messaging_api` and `:login_api` to use module.
+
+### by using stub
+
+```elixir
+config :line_developers,
+  messaging_api: LINEDevelopers.MessagingAPIStub,
+  login_api: LINEDevelopers.LoginAPIStub
+```
+### by using real LINE API
+
+```elixir
+config :line_developers,
+  messaging_api: LINEDevelopers.MessagingAPI,
+  login_api: LINEDevelopers.LoginAPI
+```
+
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/line_developers>.

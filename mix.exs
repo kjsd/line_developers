@@ -1,4 +1,4 @@
-defmodule LineDevelopers.MixProject do
+defmodule LINEDevelopers.MixProject do
   use Mix.Project
 
   @description"""
@@ -37,7 +37,8 @@ defmodule LineDevelopers.MixProject do
     [
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:httpoison, "~> 2.1"},
-      {:uuid, "~> 1.1"}
+      {:uuid, "~> 1.1"},
+      {:jason, "~> 1.4"}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]

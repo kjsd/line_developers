@@ -1,7 +1,7 @@
 defmodule LINEDevelopers.MessagingAPI do
   @behaviour LINEDevelopers.MessagingAPISpec
 
-  alias LineDevelopers.HTTPRequest
+  alias LINEDevelopers.HTTPRequest
 
   @impl LINEDevelopers.MessagingAPISpec
   def reply!(access_token, reply_token, [m|_] = messages)
