@@ -3,6 +3,9 @@ defmodule LINEDevelopers.LoginAPI do
 
   alias LineDevelopers.HTTPRequest
 
+  @doc """
+  https://developers.line.biz/en/reference/line-login/#verify-access-token
+  """
   @impl LINEDevelopers.LoginAPISpec
   def verify_access_token!(access_token) when is_binary(access_token) do
     query = %{access_token: access_token}
@@ -14,6 +17,9 @@ defmodule LINEDevelopers.LoginAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/line-login/#verify-id-token
+  """
   @impl LINEDevelopers.LoginAPISpec
   def verify_id_token!(id_token, client_id)
   when is_binary(id_token) and is_binary(client_id) do
@@ -26,6 +32,9 @@ defmodule LINEDevelopers.LoginAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/line-login/#get-user-profile
+  """
   @impl LINEDevelopers.LoginAPISpec
   def profile!(access_token) when is_binary(access_token) do
     header = ["Authorization": "Bearer #{access_token}"]

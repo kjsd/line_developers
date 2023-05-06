@@ -3,6 +3,9 @@ defmodule LINEDevelopers.MessagingAPI do
 
   alias LINEDevelopers.HTTPRequest
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#send-reply-message
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def reply!(access_token, reply_token, [m|_] = messages)
   when is_binary(access_token) and is_binary(reply_token) and is_map(m) do
@@ -16,6 +19,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#send-push-message
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def push!(access_token, to, [m|_] = messages, options \\ [])
   when is_binary(access_token) and is_map(m) do
@@ -31,6 +37,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def multicast!(access_token, [t|_] = to, [m|_] = messages, options \\ [])
   when is_binary(access_token) and is_binary(t) and is_map(m) do
@@ -46,6 +55,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def broadcast!(access_token, [m|_] = messages, options \\ [])
   when is_binary(access_token) and is_map(m) do
@@ -61,6 +73,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def narrowcast!(access_token, [m|_] = messages, recipient, filter, limit, options \\ [])
   when is_binary(access_token) and is_map(m) do
@@ -82,6 +97,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#get-narrowcast-progress-status
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def progress_narrowcast!(access_token, request_id)
   when is_binary(access_token) and is_binary(request_id) do
@@ -92,6 +110,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#get-audience-group
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def get_audience!(access_token, audience_id)
   when is_binary(access_token) and is_integer(audience_id) do
@@ -102,6 +123,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def create_audience!(access_token, description \\ "tsu-v3-audience", [t|_] = uid)
   when is_binary(access_token) and is_binary(description) and is_binary(t) do
@@ -118,6 +142,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def merge_audience!(access_token, audience_id, [t|_] = uid)
   when is_binary(access_token) and is_integer(audience_id) and is_binary(t) do
@@ -135,6 +162,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def delete_audience!(access_token, audience_id)
   when is_binary(access_token) and is_integer(audience_id) do
@@ -145,6 +175,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#create-rich-menu
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def create_richmenu!(access_token, richmenu)
   when is_binary(access_token) and is_map(richmenu) do
@@ -158,6 +191,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def delete_richmenu!(access_token, richmenu_id)
   when is_binary(access_token) and is_binary(richmenu_id) do
@@ -168,6 +204,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def content_richmenu!(access_token, richmenu_id, file)
   when is_binary(access_token) and is_binary(richmenu_id) and is_binary(file) do
@@ -179,6 +218,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#set-default-rich-menu
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def all_richmenu!(access_token, richmenu_id)
   when is_binary(access_token) and is_binary(richmenu_id) do
@@ -189,6 +231,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#link-rich-menu-to-users
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def link_richmenu!(access_token, richmenu_id, [t|_] = to)
   when is_binary(access_token) and is_binary(richmenu_id) and is_binary(t) do
@@ -202,6 +247,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#unlink-rich-menu-from-user  
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def unlink_richmenu!(access_token, [t|_] = to)
   when is_binary(access_token) and is_binary(t) do
@@ -215,6 +263,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#create-rich-menu-alias
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def alias_richmenu!(access_token, richmenu_id, alias_id)
   when is_binary(access_token) and is_binary(richmenu_id) and is_binary(alias_id) do
@@ -229,6 +280,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu-alias
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def unalias_richmenu!(access_token, alias_id)
   when is_binary(access_token) and is_binary(alias_id) do
@@ -239,6 +293,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#get-rich-menu
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def get_richmenu!(access_token, richmenu_id)
   when is_binary(access_token) and is_binary(richmenu_id) do
@@ -249,6 +306,9 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/en/reference/messaging-api/#get-profile
+  """
   @impl LINEDevelopers.MessagingAPISpec
   def get_profile!(access_token, user_id)
   when is_binary(access_token) and is_binary(user_id) do
