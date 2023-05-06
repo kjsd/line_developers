@@ -41,7 +41,7 @@ defmodule LINEDevelopers.MessagingAPISpec do
   {:error, {status :: integer, body :: map(), headers :: list()}}
 
   @callback merge_audience!(access_token :: String.t, audience_id :: integer,
-    uid :: [String.t]) ::
+    description :: String.t, uid :: [String.t]) ::
   {:ok, {status :: integer, body :: map(), headers :: list()}} |
   {:error, {status :: integer, body :: map(), headers :: list()}}
 

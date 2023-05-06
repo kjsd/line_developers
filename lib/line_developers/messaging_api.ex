@@ -127,7 +127,7 @@ defmodule LINEDevelopers.MessagingAPI do
   https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
   """
   @impl LINEDevelopers.MessagingAPISpec
-  def create_audience!(access_token, description \\ "tsu-v3-audience", [t|_] = uid)
+  def create_audience!(access_token, description \\ "audience", [t|_] = uid)
   when is_binary(access_token) and is_binary(description) and is_binary(t) do
     header = ["Authorization": "Bearer #{access_token}",
               "Content-Type": "application/json"]
@@ -146,15 +146,16 @@ defmodule LINEDevelopers.MessagingAPI do
   https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
   """
   @impl LINEDevelopers.MessagingAPISpec
-  def merge_audience!(access_token, audience_id, [t|_] = uid)
-  when is_binary(access_token) and is_integer(audience_id) and is_binary(t) do
+  def merge_audience!(access_token, audience_id, description \\ "audience", [t|_] = uid)
+  when is_binary(access_token) and is_integer(audience_id) and is_binary(description) and
+  is_binary(t) do
     header = ["Authorization": "Bearer #{access_token}",
               "Content-Type": "application/json"]
 
     lists = Enum.reduce(uid, [], fn x, acc -> [%{"id" => x} | acc] end)
 
     body = %{"audienceGroupId" => audience_id, "audiences" => lists,
-             "uploadDescription" => "by TSUNAGARU-V3-MESSENGER"}
+             "uploadDescription" => description}
     |> Jason.encode!()
 
     "https://api.line.me/v2/bot/audienceGroup/upload"

@@ -80,9 +80,9 @@ defmodule LINEDevelopers.MessagingAPIStub do
   end
 
   @impl LINEDevelopers.MessagingAPISpec
-  def merge_audience!(x1, x2, [t|_] = x3)
-  when is_binary(x1) and is_integer(x2) and is_binary(t),
-    do: log(:merge_audience!, [x1, x2, x3])
+  def merge_audience!(x1, x2, x3 \\ "stub-audience", [t|_] = x4)
+  when is_binary(x1) and is_integer(x2) and is_binary(x3) and is_binary(t),
+    do: log(:merge_audience!, [x1, x2, x3, x4])
 
   @impl LINEDevelopers.MessagingAPISpec
   def delete_audience!(x1, x2)
