@@ -1,7 +1,7 @@
 defmodule LINEDevelopers.LoginAPI do
   @behaviour LINEDevelopers.LoginAPISpec
 
-  alias LineDevelopers.HTTPRequest
+  alias LINEDevelopers.HTTPRequest
 
   @doc """
   https://developers.line.biz/en/reference/line-login/#verify-access-token
