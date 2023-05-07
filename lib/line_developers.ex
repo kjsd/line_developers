@@ -8,12 +8,14 @@ defmodule LINEDevelopers do
   @doc """
   Get Messaging API module
   """
-  def messaging_api(), do: Application.get_env(:line_developers, :messaging_api)
+  def messaging_api(), do: Application.get_env(:line_developers, :messaging_api,
+      LINEDevelopers.MessagingAPI)
 
   @doc """
   Get Login API module
   """
-  def login_api(), do: Application.get_env(:line_developers, :login_api)
+  def login_api(), do: Application.get_env(:line_developers, :login_api,
+      LINEDevelopers.LoginAPI)
 
   @doc """
   Upload richmenu image from URL
