@@ -165,6 +165,42 @@ defmodule LINEDevelopers.MessagingAPIStub do
   end
 
   @impl LINEDevelopers.MessagingAPISpec
+  def list_richmenu!(x1) when is_binary(x1) do
+    log(:list_richmenu!, [x1])
+
+    data = %{
+      "richmenus" => [
+      %{
+        "richMenuId" => "RICHMENUID",
+        "name" => "Nice rich menu",
+        "size" => %{
+          "width" => 2500,
+          "height" => 1686
+        },
+        "chatBarText" => "Tap to open",
+        "selected" => false,
+        "areas" => [
+          %{
+            "bounds" => %{
+              "x" => 0,
+              "y" => 0,
+              "width" => 2500,
+              "height" => 1686
+            },
+            "action" => %{
+              "type" => "postback",
+              "data" => "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    ]
+    }
+
+    {:ok, {200, data, []}}
+  end
+
+  @impl LINEDevelopers.MessagingAPISpec
   def get_profile!(x1, user_id)
   when is_binary(x1) and is_binary(user_id) do
     log(:get_profile!, [x1, user_id])

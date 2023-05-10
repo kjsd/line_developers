@@ -88,6 +88,10 @@ defmodule LINEDevelopers.MessagingAPISpec do
   {:ok, {status :: integer, body :: map(), headers :: list()}} |
   {:error, {status :: integer, body :: map(), headers :: list()}}
 
+  @callback list_richmenu!(access_token :: String.t) ::
+  {:ok, {status :: integer, body :: map(), headers :: list()}} |
+  {:error, {status :: integer, body :: map(), headers :: list()}}
+
   @callback get_profile!(access_token :: String.t, user_id :: String.t) ::
   {:ok, {status :: integer, body :: map(), headers :: list()}} |
   {:error, {status :: integer, body :: map(), headers :: list()}}

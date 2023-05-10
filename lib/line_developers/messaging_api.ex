@@ -308,6 +308,19 @@ defmodule LINEDevelopers.MessagingAPI do
   end
 
   @doc """
+  https://developers.line.biz/ja/reference/messaging-api/#get-rich-menu-list
+  """
+  @impl LINEDevelopers.MessagingAPISpec
+  def list_richmenu!(access_token)
+  when is_binary(access_token) do
+    header = ["Authorization": "Bearer #{access_token}"]
+
+    "https://api.line.me/v2/bot/richmenu/list"
+    |> HTTPRequest.get!(header)
+    |> parse_response()
+  end
+
+  @doc """
   https://developers.line.biz/en/reference/messaging-api/#get-profile
   """
   @impl LINEDevelopers.MessagingAPISpec
