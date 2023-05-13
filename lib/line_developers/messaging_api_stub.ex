@@ -216,6 +216,82 @@ defmodule LINEDevelopers.MessagingAPIStub do
     {:ok, {200, data, []}}
   end
 
+  @impl LINEDevelopers.MessagingAPISpec
+  def get_quota!(x1)
+  when is_binary(x1) do
+    log(:get_quota!, [x1])
+
+    data = %{
+      "type" => "limited",
+      "value" => 1000
+    }
+
+    {:ok, {200, data, []}}
+  end
+
+  @impl LINEDevelopers.MessagingAPISpec
+  def get_delivery!(x1, %Date{} = x2)
+  when is_binary(x1) do
+    log(:get_delivery!, [x1, x2])
+
+    data = %{
+      "status" => "ready",
+      "broadcast" => 5385,
+      "targeting" => 522
+    }
+
+    {:ok, {200, data, []}}
+  end
+
+  @impl LINEDevelopers.MessagingAPISpec
+  def get_statistics_per_unit!(x1, x2, %Date{} = x3, %Date{} = x4)
+  when is_binary(x1) and is_binary(x2) do
+    log(:get_statistics_per_unit!, [x1, x2, x3, x4])
+
+    data = %{
+      "overview" => %{
+        "uniqueImpression" => 40,
+        "uniqueClick" => 30,
+        "uniqueMediaPlayed" => 25,
+        "uniqueMediaPlayed100Percent" => nil
+      },
+      "messages" => [
+        %{
+          "seq" => 1,
+          "impression" => 42,
+          "mediaPlayed" => 30,
+          "mediaPlayed25Percent" => nil,
+          "mediaPlayed50Percent" => nil,
+          "mediaPlayed75Percent" => nil,
+          "mediaPlayed100Percent" => nil,
+          "uniqueMediaPlayed" => 25,
+          "uniqueMediaPlayed25Percent" => nil,
+          "uniqueMediaPlayed50Percent" => nil,
+          "uniqueMediaPlayed75Percent" => nil,
+          "uniqueMediaPlayed100Percent" => nil
+        }
+      ],
+      "clicks" => [
+        %{
+          "seq" => 1,
+          "url" => "https://developers.line.biz/",
+          "click" => 35,
+          "uniqueClick" => 25,
+          "uniqueClickOfRequest" => nil
+        },
+        %{
+          "seq" => 1,
+          "url" => "https://www.line-community.me/",
+          "click" => 29,
+          "uniqueClick" => nil,
+          "uniqueClickOfRequest" => nil
+        }
+      ]
+    }
+
+    {:ok, {200, data, []}}
+  end
+
   defp log(x, p) do
     "You now on stub: #{__MODULE__}:#{x}, "
     |> Kernel.<>(inspect(p))

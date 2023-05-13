@@ -333,6 +333,49 @@ defmodule LINEDevelopers.MessagingAPI do
     |> parse_response()
   end
 
+  @doc """
+  https://developers.line.biz/ja/reference/messaging-api/#get-quota
+  """
+  @impl LINEDevelopers.MessagingAPISpec
+  def get_quota!(access_token)
+  when is_binary(access_token) do
+    header = ["Authorization": "Bearer #{access_token}"]
+
+    "https://api.line.me/v2/bot/message/quota"
+    |> HTTPRequest.get!(header)
+    |> parse_response()
+  end
+
+  @doc """
+  https://developers.line.biz/ja/reference/messaging-api/#get-number-of-delivery-messages
+  """
+  @impl LINEDevelopers.MessagingAPISpec
+  def get_delivery!(access_token, %Date{} = date)
+  when is_binary(access_token) do
+    header = ["Authorization": "Bearer #{access_token}"]
+
+    datestr = Date.to_iso8601(date, :basic)
+    "https://api.line.me/v2/bot/insight/message/delivery?date=#{datestr}"
+    |> HTTPRequest.get!(header)
+    |> parse_response()
+  end
+
+  @doc """
+  https://developers.line.biz/ja/reference/messaging-api/#get-statistics-per-unit
+  """
+  @impl LINEDevelopers.MessagingAPISpec
+  def get_statistics_per_unit!(access_token, unit_id, %Date{} = from, %Date{} = to)
+  when is_binary(access_token) and is_binary(unit_id) do
+    header = ["Authorization": "Bearer #{access_token}"]
+
+    fromstr = Date.to_iso8601(from, :basic)
+    tostr = Date.to_iso8601(to, :basic)
+    
+    "GET https://api.line.me/v2/bot/insight/message/event/aggregation?customAggregationUnit=#{unit_id}&from=#{fromstr}&to=#{tostr}"
+    |> HTTPRequest.get!(header)
+    |> parse_response()
+  end
+
   defp option_header(header, options) do
     case Keyword.get(options, :retry_key) do
       nil ->

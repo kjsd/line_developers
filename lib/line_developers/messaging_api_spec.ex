@@ -95,4 +95,17 @@ defmodule LINEDevelopers.MessagingAPISpec do
   @callback get_profile!(access_token :: String.t, user_id :: String.t) ::
   {:ok, {status :: integer, body :: map(), headers :: list()}} |
   {:error, {status :: integer, body :: map(), headers :: list()}}
+
+  @callback get_quota!(access_token :: String.t) ::
+  {:ok, {status :: integer, body :: map(), headers :: list()}} |
+  {:error, {status :: integer, body :: map(), headers :: list()}}
+
+  @callback get_delivery!(access_token :: String.t, date :: Date.t) ::
+  {:ok, {status :: integer, body :: map(), headers :: list()}} |
+  {:error, {status :: integer, body :: map(), headers :: list()}}
+
+  @callback get_statistics_per_unit!(access_token :: String.t, unit_id :: String.t,
+    from :: Date.t, to :: Date.t) ::
+  {:ok, {status :: integer, body :: map(), headers :: list()}} |
+  {:error, {status :: integer, body :: map(), headers :: list()}}
 end
