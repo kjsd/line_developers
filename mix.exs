@@ -8,7 +8,7 @@ defmodule LINEDevelopers.MixProject do
   def project do
     [
       app: :line_developers,
-      version: "0.1.1",
+      version: "0.1.2",
       elixir: "~> 1.14",
       description: @description,
       package: package(),
