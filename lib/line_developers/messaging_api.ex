@@ -321,7 +321,7 @@ defmodule LINEDevelopers.MessagingAPI do
   end
 
   @doc """
-  https://developers.line.biz/ja/reference/messaging-api/#get-rich-menu-list
+  https://developers.line.biz/ja/reference/messaging-api/#get-rich-menu-alias-list
   """
   @impl LINEDevelopers.MessagingAPISpec
   def list_richmenu_alias!(access_token)
