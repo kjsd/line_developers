@@ -201,6 +201,18 @@ defmodule LINEDevelopers.MessagingAPIStub do
   end
 
   @impl LINEDevelopers.MessagingAPISpec
+  def list_richmenu_alias!(x1) when is_binary(x1) do
+    log(:list_richmenu_alias!, [x1])
+    data = %{
+      "aliases" => [
+      %{"richMenuAliasId" => "ralias",
+        "richMenuId" => "richmenu-xxx"}
+      ]
+    }
+    {:ok, {200, data, []}}
+  end    
+  
+  @impl LINEDevelopers.MessagingAPISpec
   def get_profile!(x1, user_id)
   when is_binary(x1) and is_binary(user_id) do
     log(:get_profile!, [x1, user_id])
