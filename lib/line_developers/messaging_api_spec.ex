@@ -36,7 +36,7 @@ defmodule LINEDevelopers.MessagingAPISpec do
   {:error, {status :: integer, body :: map(), headers :: list()}}
 
   @callback create_audience!(access_token :: String.t, description :: String.t,
-    uid :: [String.t]) ::
+    uids :: list()) ::
   {:ok, {status :: integer, body :: map(), headers :: list()}} |
   {:error, {status :: integer, body :: map(), headers :: list()}}
 

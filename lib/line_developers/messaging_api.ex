@@ -127,12 +127,12 @@ defmodule LINEDevelopers.MessagingAPI do
   https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
   """
   @impl LINEDevelopers.MessagingAPISpec
-  def create_audience!(access_token, description \\ "audience", [t|_] = uid)
-  when is_binary(access_token) and is_binary(description) and is_binary(t) do
+  def create_audience!(access_token, description \\ "audience", uids)
+  when is_binary(access_token) and is_binary(description) and is_list(uids) do
     header = ["Authorization": "Bearer #{access_token}",
               "Content-Type": "application/json"]
 
-    lists = Enum.reduce(uid, [], fn x, acc -> [%{"id" => x} | acc] end)
+    lists = Enum.reduce(uids, [], fn x, acc -> [%{"id" => x} | acc] end)
 
     body = %{"description" => description, "audiences" => lists}
     |> Jason.encode!()

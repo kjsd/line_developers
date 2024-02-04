@@ -73,8 +73,8 @@ defmodule LINEDevelopers.MessagingAPIStub do
   end
 
   @impl LINEDevelopers.MessagingAPISpec
-  def create_audience!(x1, x2 \\ "stub-audience", [t|_] = x3)
-  when is_binary(x1) and is_binary(x2) and is_binary(t) do
+  def create_audience!(x1, x2 \\ "stub-audience", x3)
+  when is_binary(x1) and is_binary(x2) and is_list(x3) do
     log(:create_audience!, [x1, x2, x3])
     {:ok, {200, %{"audienceGroupId" => 9999999999999}, []}}
   end
